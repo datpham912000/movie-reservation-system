@@ -9,6 +9,7 @@ import (
 type Reservation struct {
 	ID              uuid.UUID `gorm:"type:uuid;primary_key;default:uuid_generate_v4()"`
 	UserID          uuid.UUID `gorm:"type:uuid;not null"`
+	User            User      `gorm:"foreignKey:UserID;references:ID;constraint:OnUpdate:CASCADE,OnDelete:SET NULL;"`
 	ShowtimeID      uuid.UUID `gorm:"type:uuid;not null"`
 	SeatNumbers     string    `gorm:"type:text"` // Changed from []int to string
 	ReservationTime time.Time

@@ -9,6 +9,7 @@ import (
 type Showtime struct {
 	ID             uuid.UUID `gorm:"type:uuid;primary_key;" json:"id"`
 	MovieID        uuid.UUID `gorm:"not null;" json:"movieId"`
+	Movie          Movie     `gorm:"foreignKey:MovieID;references:ID;constraint:OnUpdate:CASCADE,OnDelete:SET NULL;"`
 	StartTime      time.Time `gorm:"not null;" json:"startTime"`
 	EndTime        time.Time `gorm:"not null;" json:"endTime"`
 	AvailableSeats int       `gorm:"not null;" json:"availableSeats"`
